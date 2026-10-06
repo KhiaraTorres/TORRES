@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siargao Island Sitemap</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            background: linear-gradient(
+                180deg,
+                #bfeaf7 0%,
+                #eaf9ff 55%,
+                #fff5c7 100%
+            );
+            color: #405563;
+            min-height: 100vh;
+            padding: 50px 20px;
+            overflow-x: hidden;
+        }
+
+        /* Decorative clouds */
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            width: 160px;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.65);
+            border-radius: 50px;
+            z-index: -1;
+        }
+
+        body::before {
+            top: 60px;
+            left: 5%;
+        }
+
+        body::after {
+            top: 140px;
+            right: 7%;
+        }
+
+        .sitemap {
+            width: 95%;
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+        }
+
+        /* Title */
+        .title {
+            display: inline-block;
+            background: linear-gradient(
+                135deg,
+                #fff0a8,
+                #fff8d5
+            );
+            color: #3d6879;
+            padding: 25px 55px;
+            border-radius: 50px;
+            border: 4px solid #ffffff;
+            box-shadow:
+                0 10px 25px rgba(61, 125, 150, 0.18),
+                inset 0 -4px 0 rgba(241, 216, 117, 0.5);
+            margin-bottom: 15px;
+        }
+
+        .title h1 {
+            font-size: 38px;
+            letter-spacing: 1px;
+        }
+
+        .title p {
+            margin-top: 6px;
+            color: #71838a;
+            font-size: 15px;
+        }
+
+        /* Connecting line */
+        .line {
+            width: 5px;
+            height: 45px;
+            background: #8fd0e7;
+            margin: auto;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .line::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: -5px;
+            width: 15px;
+            height: 15px;
+            background: #8fd0e7;
+            transform: rotate(45deg);
+        }
+
+        /* Cards */
+        .pages {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 15px;
+            align-items: start;
+        }
+
+        .page {
+            position: relative;
+            padding: 25px 18px;
+            border-radius: 28px;
+            background: #c9eaf7;
+            border: 4px solid #a7dced;
+            box-shadow:
+                0 10px 20px rgba(67, 125, 145, 0.15),
+                inset 0 -5px 0 rgba(255, 255, 255, 0.35);
+            transition: 0.3s ease;
+            overflow: hidden;
+        }
+
+        .page:nth-child(2) {
+            background: #fff3b5;
+            border-color: #f1d875;
+        }
+
+        .page:nth-child(3) {
+            background: #ccefdc;
+            border-color: #a9ddc0;
+        }
+
+        .page:nth-child(4) {
+            background: #ffd9d9;
+            border-color: #f2bcbc;
+        }
+
+        .page::before {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            top: -50px;
+            right: -35px;
+        }
+
+        .page:hover {
+            transform: translateY(-8px);
+            box-shadow:
+                0 18px 30px rgba(67, 125, 145, 0.22);
+        }
+
+        /* Heading */
+        .page h2 {
+            position: relative;
+            color: #3d6879;
+            font-size: 23px;
+            margin-bottom: 18px;
+        }
+
+        .page h2 a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .page h2 a:hover {
+            color: #267d9d;
+        }
+
+        .page h2::after {
+            content: "";
+            display: block;
+            width: 55px;
+            height: 4px;
+            background: #ffffff;
+            border-radius: 10px;
+            margin: 8px auto 0;
+        }
+
+        /* Sub-pages */
+        .subpage {
+            position: relative;
+            background: rgba(255, 255, 255, 0.65);
+            margin-top: 12px;
+            padding: 13px;
+            border-radius: 17px;
+            text-align: left;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            transition: 0.25s ease;
+        }
+
+        .subpage:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateX(4px);
+        }
+
+        .subpage h3 {
+            font-size: 15px;
+            color: #3f6c7e;
+            margin-bottom: 5px;
+        }
+
+        .subpage h3::before {
+            content: "";
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            background: #e5bf45;
+            border-radius: 50%;
+            margin-right: 7px;
+        }
+
+        .subpage p {
+            font-size: 12px;
+            line-height: 1.5;
+            color: #687982;
+        }
+
+        /* Bottom decoration */
+        .bottom-wave {
+            width: 100%;
+            height: 35px;
+            margin-top: 45px;
+            background:
+                radial-gradient(
+                    circle at 50% -20px,
+                    transparent 35px,
+                    #a9ddec 36px,
+                    #a9ddec 40px,
+                    transparent 41px
+                );
+            opacity: 0.7;
+        }
+
+        .tagline {
+            margin-top: 10px;
+            color: #66818c;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        /* Tablet */
+        @media (max-width: 950px) {
+            .pages {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            body {
+                padding: 30px 15px;
+            }
+
+            .title {
+                padding: 20px 30px;
+            }
+
+            .title h1 {
+                font-size: 28px;
+            }
+
+            .pages {
+                grid-template-columns: 1fr;
+            }
+
+            .page {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sitemap">
+
+        <!-- TITLE -->
+        <div class="title">
+            <h1>Siargao Island</h1>
+            <p>Website Sitemap</p>
+        </div>
+
+        <div class="line"></div>
+
+        <!-- MAIN PAGES -->
+        <div class="pages">
+
+            <!-- HOME -->
+            <div class="page">
+                <h2>
+                    <a href="index.html">Home</a>
+                </h2>
+
+                <div class="subpage">
+                    <h3>Main Page</h3>
+                    <p>
+                        Welcome to Siargao, the Surfing Capital of the
+                        Philippines. Discover beautiful beaches, islands,
+                        lagoons, and tropical scenery.
+                    </p>
+                </div>
+
+                <div class="subpage">
+                    <h3>News</h3>
+                    <p>
+                        Stay updated with the latest Siargao travel news,
+                        local events, tourism activities, and attractions.
+                    </p>
+                </div>
+
+                <div class="subpage">
+                    <h3>Announcements</h3>
+                    <p>
+                        Check important updates about weather, beach
+                        conditions, schedules, and island-hopping advisories.
+                    </p>
+                </div>
+            </div>
+
+
+            <!-- BOOKINGS -->
+            <div class="page">
+                <h2>
+                    <a href="booking.html">Bookings</a>
+                </h2>
+
+                <div class="subpage">
+                    <h3>Room</h3>
+                    <p>
+                        View available rooms, rates, amenities, and
+                        accommodation options for your stay.
+                    </p>
+                </div>
+
+                <div class="subpage">
+                    <h3>Island Hopping</h3>
+                    <p>
+                        Explore island-hopping packages, destinations,
+                        schedules, tour rates, and inclusions.
+                    </p>
+                </div>
+
+                <div class="subpage">
+                    <h3>Promo</h3>
+                    <p>
+                        Discover special offers, room discounts, seasonal
+                        deals, and island-hopping promotions.
+                    </p>
+                </div>
+            </div>
+
+
+            <!-- ACTIVITIES -->
+            <div class="page">
+                <h2>
+                    <a href="activities.html">Activities</a>
+                </h2>
+
+                <div class="subpage">
+                    <h3>Beach Activities</h3>
+                    <p>
+                        Enjoy surfing, swimming, snorkeling, kayaking,
+                        paddleboarding, sunbathing, and beach relaxation.
+                    </p>
+                </div>
+
+                <div class="subpage">
+                    <h3>Surfing</h3>
+                    <p>
+                        Experience Siargao's famous waves through surfing
+                        lessons, surfboard rentals, and popular surf spots.
+                    </p>
+                </div>
+
+                <div class="subpage">
+                    <h3>Island Adventures</h3>
+                    <p>
+                        Visit nearby islands and lagoons while enjoying
+                        swimming, snorkeling, sightseeing, and photography.
+                    </p>
+                </div>
+            </div>
+
+
+            <!-- CONTACT -->
+            <div class="page">
+                <h2>
+                    <a href="contact.html">Contact Us</a>
+                </h2>
+
+                <div class="subpage">
+                    <h3>Email</h3>
+                    <p>
+                        Send questions and inquiries about bookings,
+                        accommodations, activities, and services.
+                    </p>
+                </div>
+
+                <div class="subpage">
+                    <h3>Map</h3>
+                    <p>
+                        Find Siargao, accommodations, nearby attractions,
+                        transportation options, and directions.
+                    </p>
+                </div>
+
+                <div class="subpage">
+                    <h3>Social Media</h3>
+                    <p>
+                        Follow our Facebook, Instagram, and TikTok pages for
+                        photos, videos, announcements, and promotions.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bottom-wave"></div>
+
+        <p class="tagline">
+            Your tropical adventure starts here.
+        </p>
+
+    </div>
+
+</body>
+</html>
